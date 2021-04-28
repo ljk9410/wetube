@@ -10,10 +10,9 @@ const logger = morgan("dev");
 
 app.use(logger);
 
-
 app.use("/", globalRouter);
-app.use("/users", userRouter);
-app.use("/videos", videoRouter);
+app.use("/user", userRouter);
+app.use("/video", videoRouter);
 
 
 const handleListening = () => console.log(`Server listening on http://localhost:${PORT}!!`);
