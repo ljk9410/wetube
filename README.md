@@ -97,3 +97,37 @@ const gossipMiddleware = (req, res, next) => {
 * `app.use(callback);`
   * middleware을 호출하기 위한 함수
   * 함수를 호출하는 위치, 순서가 중요하다.
+
+#### 외부 middleware
+> nodejs의 모든 소프트웨어는 next()를 가진 middleware이다.
+* log를 관리하는 'morgan'
+* `npm i morgan`을 이용해서 설치 후
+* `app.use(morgan("option"));` 으로 middleware처럼 사용
+
+## 2021.04.28
+
+### Router
+* 웹사이트의 url을 compact있게 관리해주는 express의 기능
+* Router is beggining of URL
+
+### nodejs file의 특징
+* 모든 nodejs file은 module이자 bubble이다.
+* 모든 파일은 isolated
+* import와 export의 활용
+
+### nodejs의 export
+> js 파일을 module로 변경해주는 중요한 명령어
+* `export defalut`와 `export`
+  * `export default`
+    * 변수 하나를 export해서 다른 곳에서 import를 할 때 아무 이름으로 import 할 수 있다.
+  * `export`
+    * default가 없이 export를 하는 경우 다른 곳에서 import를 할 때는 반드시 export한 파일에서 정의한 변수 이름으로 해야한다.
+```javascript
+import globalRouter from "./routers/globalRouter";
+import { trending } from "../controllers/videoController";
+
+export const trending = (req, res) => res.send("Home Page Videos");
+
+const globalRouter = express.Router();
+export default globalRouter;
+```

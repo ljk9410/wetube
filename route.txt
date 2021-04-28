@@ -1,0 +1,17 @@
+# Wetube Router
+
+/ -> Home
+/join -> Join
+/login -> Login
+/search -> Search
+
+// User
+/users/edit -> Edit Profile
+/users/delete -> Delete Profile
+
+// Videos
+/videos/watch -> Watch Video
+/videos/edit -> Edit Video
+/videos/delete -> Delete Video
+/videos/comment -> Comment on a Video
+/videos/comment/delete -> Delete A comment of a video
