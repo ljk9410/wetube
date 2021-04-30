@@ -3,7 +3,7 @@
 <br>
 
 ## 2021.04.23
----
+
 * nodejs가 뭔지, npm, 
 * package.json
   * 파일의 정보를 저장하는 공간
@@ -15,7 +15,7 @@
 <br>
 
 ## 2021.04.26
----
+
 ### <package.json의 기능>
 ---
   ```javascript
@@ -84,9 +84,9 @@ const handleHome = (req, res) => {
 }
 app.get("/", handleHome);
 ```
-  * request와 response
-  * `res.end()` or `res.send("hello world")` 를 이용해서 request를 마무리
-  * 가장 중요한 것은 'request를 받고 response를 해준다'이다
+* request와 response
+* `res.end()` or `res.send("hello world")` 를 이용해서 request를 마무리
+* 가장 중요한 것은 'request를 받고 response를 해준다'이다
 
 ### <middleware>
 ---
@@ -116,7 +116,7 @@ const gossipMiddleware = (req, res, next) => {
 <br>
 
 ## 2021.04.28
----
+
 ### <Router>
 ---
 * 웹사이트의 url을 compact있게 관리해주는 express의 기능
@@ -149,7 +149,7 @@ export default globalRouter;
 <br>
 
 ## 2021.04.30
----
+
 ### <':id' 에 대한 이해>
 ---
 > URL parameter.
