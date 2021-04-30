@@ -1,6 +1,9 @@
 # Youtube Clone Coding
 
+<br>
+
 ## 2021.04.23
+---
 * nodejs가 뭔지, npm, 
 * package.json
   * 파일의 정보를 저장하는 공간
@@ -9,9 +12,12 @@
 * npm init
   * package.json을 만들어 준다.
 
-## 2021.04.26
+<br>
 
-### package.json의 기능
+## 2021.04.26
+---
+### <package.json의 기능>
+---
   ```javascript
     "scripts": {
     "win": "node index.js"
@@ -51,7 +57,8 @@
 }
 ```
 
-### express를 이용한 build server
+### <express를 이용한 build server>
+---
 ```javascript
 import express from "express";
 
@@ -81,7 +88,8 @@ app.get("/", handleHome);
   * `res.end()` or `res.send("hello world")` 를 이용해서 request를 마무리
   * 가장 중요한 것은 'request를 받고 response를 해준다'이다
 
-### middleware
+### <middleware>
+---
 > 중간에 있는 소프트웨어를 칭함. middleware은 req와 res 사이에 있는 소프트웨어이다.
 * 모든 controller, handler는 middleware가 될 수 있다
 ```javascript
@@ -98,24 +106,30 @@ const gossipMiddleware = (req, res, next) => {
   * middleware을 호출하기 위한 함수
   * 함수를 호출하는 위치, 순서가 중요하다.
 
-#### 외부 middleware
+#### <외부 middleware>
+---
 > nodejs의 모든 소프트웨어는 next()를 가진 middleware이다.
 * log를 관리하는 'morgan'
 * `npm i morgan`을 이용해서 설치 후
 * `app.use(morgan("option"));` 으로 middleware처럼 사용
 
-## 2021.04.28
+<br>
 
-### Router
+## 2021.04.28
+---
+### <Router>
+---
 * 웹사이트의 url을 compact있게 관리해주는 express의 기능
 * Router is beggining of URL
 
-### nodejs file의 특징
+### <nodejs file의 특징>
+---
 * 모든 nodejs file은 module이자 bubble이다.
 * 모든 파일은 isolated
 * import와 export의 활용
 
-### nodejs의 export
+### <nodejs의 export>
+---
 > js 파일을 module로 변경해주는 중요한 명령어
 * `export defalut`와 `export`
   * `export default`
@@ -131,3 +145,26 @@ export const trending = (req, res) => res.send("Home Page Videos");
 const globalRouter = express.Router();
 export default globalRouter;
 ```
+ 
+<br>
+
+## 2021.04.30
+---
+### <':id' 에 대한 이해>
+---
+> URL parameter.
+* url에 존재하는 변수라고 생각하면 됨
+* `:` 이 존재하지 않으면 url로 인식하기 때문에 반드시 써야된다.
+* `req.params`를 통해서 그 값을 받아올 수 있다.
+* 'get' 함수와 같이 사용할 때 그 위치가 중요하다
+  * 일반적인 url을 받아오기 전에 그 위에 `:id`가 존재한다면, express는 일반적인 url을 변수로 착각한다.
+  * 따라서 `:id`는 아래쪽으로 몰아주는 것이 좋다.
+#### !이 문제를 해결하기 위해 정규식을 사용할 수 있다.
+
+### <router과 정규표현식의 관계>
+---
+* `(\\d+)` 는 숫자만 포함된 string을 가져온다는 것을 의미하는 정규식
+
+### <temlplate>
+---
+* String 대신 HTML을 send 하기 위한 template
