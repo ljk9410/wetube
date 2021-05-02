@@ -167,3 +167,54 @@ export default globalRouter;
 #### pug의 partials
 * template간 중복되는 내용들을 따로 나눠서 관리 및 사용
 * `include 폴더/파일이름.pug`로 사용
+
+<br>
+
+## 2021.05.25
+
+### Inheritance
+> base of a layout, base of html
+* `extends file_name` 을 통해서 템플릿을 가져올 수 있다
+* `block`
+  * 무언가를 넣을 수 있는 창이 생긴다고 생각하면 됨
+  * `block block_name`을 쓰고 원하는 내용을 넣으면 완성
+
+### Variables to Templates
+  * `#{}`: javascript code를 넣을 수도 있고, variable 처럼 사용할 수도 있다.
+  * controller에서 variable을 보내줘야 한다.
+  * `res.render("edit", {pageTitle: "Edit"});`
+
+### mvp.css
+  * put default style at the html temlplates
+  * 일시적인 solution으로 ugly한 html을 보기 싫다면 적용해라
+
+### Conditionals to Templates
+  * `tag=variable` 의 형식으로 하면 `=`뒤의 내용이 text가 아닌 variable로 적용된다.
+    * `#{variable}`과 동일한 기능을 함
+    * 하지만 이 경우에는 다른 text와 섞을 수 없으며, 오직 하나의 variable만을 가질 때 사용한다.
+  * `if varialble.property`의 형태로 사용
+  ```javascript
+    const fakeUser = {
+    username: "Lee",
+    loggedIn: false
+      };
+
+    if fakeUser.loggedIn
+        li 
+            a(href="/login") Logout
+    else
+        li 
+            a(href="/login") Login
+  ```
+
+### Iteration to Temlplates
+```javascript
+array = [1, 2, 3, 4, 5];
+each item in array
+  li=item // li #{item}
+```
+
+### Mixins
+* partial과 비슷한 개념
+* data를 불러오는 partial이라고 생각하면 좋다.
+* pre made html block
