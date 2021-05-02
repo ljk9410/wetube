@@ -218,3 +218,6 @@ each item in array
 * partial과 비슷한 개념
 * data를 불러오는 partial이라고 생각하면 좋다.
 * pre made html block
+
+### Database
+* pug 파일 안에서 백틱기호를 사용하면 javscript 문법을 사용할 수 있다.
