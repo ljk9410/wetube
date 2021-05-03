@@ -231,3 +231,12 @@ each item in array
 * get과 post
   * get은 서버로부터 무언가를 받아올 때 사용
   * post는 서버(데이터베이스)로 무언가를 전달할 때 사용
+* `method="POST"` 사용하기
+  * `router.post(url, callback)`
+* `get()`과 `post()` 한번에 다루기
+  * `videoRouter.route("/:id(\\d+)/edit").get(getEdit).post(postEdit);`
+
+### express.urlencoded()
+* 내 서버가 form을 이해하고 이것을 javascript 코드로 변환시켜주는 middleware
+* `input(name="value")`: value와 같은 이름의 객체 프로퍼티 안에 post한 내용이 들어감
+* `req.body`의 프로퍼티로 존재
