@@ -170,7 +170,7 @@ export default globalRouter;
 
 <br>
 
-## 2021.05.25
+## 2021.05.02
 
 ### Inheritance
 > base of a layout, base of html
@@ -221,3 +221,13 @@ each item in array
 
 ### Database
 * pug 파일 안에서 백틱기호를 사용하면 javscript 문법을 사용할 수 있다.
+
+<br>
+
+## 2021.05.03
+
+### form
+* `action`: 내가 정보를 보내고 싶은 곳 (url)
+* get과 post
+  * get은 서버로부터 무언가를 받아올 때 사용
+  * post는 서버(데이터베이스)로 무언가를 전달할 때 사용
