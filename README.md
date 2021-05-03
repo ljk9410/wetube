@@ -247,6 +247,7 @@ each item in array
   * `mongo` 명령어를 통해 mongo shell로 접속할 수 있다.
 * mongoose
   * mongoDB와 nodejs를 이어주는 프레임워크
+  * mongoose는 data를 자동으로 validate해준다. 즉 잘못된 타입의 data를 자동적으로 걸러줌
 * 사용법
 ```javascript
 import mongoose from "mongoose";
@@ -293,3 +294,9 @@ export const home = async (req, res) => {
 }
 ```
 * callback 함수를 이용해서 javascript의 행동을 늦추는 방법을 좀 더 쉽게 하기 위한 문법
+
+### Database #2
+* model을 이용해서 data 객체를 만들기
+* `객체.save()` 함수를 통해 database에 저장하기
+* 혹은 `객체.create()`를 이용해서 바로 저장하기
+* mongoose는 잘못된 data type을 자동으로 걸러준다.
