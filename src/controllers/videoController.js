@@ -1,44 +1,47 @@
-const videos = [
-    {
-        title: "video#1",
-        rating: 5,
-        comment: 2,
-        caratedAt: "2 mins ago",
-        views: 1,
-        id: 1
-    },
-    {
-        title: "video#2",
-        rating: 5,
-        comment: 2,
-        caratedAt: "2 mins ago",
-        views: 59,
-        id: 2
-    },
-    {
-        title: "video#3",
-        rating: 5,
-        comment: 2,
-        caratedAt: "2 mins ago",
-        views: 59,
-        id: 3
-    }
-];
+import Video from "../models/Video"
 
-export const trending = (req, res) => res.render("home", {pageTitle: "Home", videos});
+/*
+Videos.find({}, (err, videos) => {
+    if (err) {
+        return res.render("server-error");
+    }
+    return res.render("home", { pageTitle: "Home", videos });
+})
+*/
+
+
+export const home = async (req, res) => {
+    const videos = await Video.find({});
+    return res.render("home", { pageTitle: "Home", videos });
+};
+
+
+
+
+
+
+
+
+
+
 export const watch = (req, res) => {
     const { id } = req.params;
-    const video = videos[id - 1];
-    res.render("watch", {pageTitle: `Watching ${video.title}`, video});
+    res.render("watch", {pageTitle: `Watching `});
 }
 export const getEdit = (req, res) => {
     const { id } = req.params;
-    const video = videos[id - 1];
-    return res.render("edit", { pageTitle: `Editing: ${video.title}`, video });
+    return res.render("edit", { pageTitle: `Editing `});
 }
 export const postEdit = (req, res) => {
     const { id } = req.params;
     const { title } = req.body;
-    videos[id - 1].title = title;
     return res.redirect(`/videos/${id}`);
+}
+
+export const getUpload = (req, res) => {
+    return res.render("Upload", {pageTitle: "Upload Video"});
+}
+export const postUpload = (req, res) => {
+    const { title } = req.body;
+    return res.redirect("/");
 }

@@ -239,4 +239,57 @@ each item in array
 ### express.urlencoded()
 * 내 서버가 form을 이해하고 이것을 javascript 코드로 변환시켜주는 middleware
 * `input(name="value")`: value와 같은 이름의 객체 프로퍼티 안에 post한 내용이 들어감
-* `req.body`의 프로퍼티로 존재
+* 이 middleware를 통해서 `req.body`의 프로퍼티가 생성된다.
+
+### Database
+* mongoDB
+  * Document-base-database: JSON-like document 형식으로 저장된다.
+  * `mongo` 명령어를 통해 mongo shell로 접속할 수 있다.
+* mongoose
+  * mongoDB와 nodejs를 이어주는 프레임워크
+* 사용법
+```javascript
+import mongoose from "mongoose";
+
+mongoose.connect("mongodb://127.0.0.1:27017/wetube", 
+{ 
+    useNewUrlParser: true, 
+    useUnifiedTopology: true 
+});
+
+const db = mongoose.connection; // excess current connection
+
+const handleOpen = () => console.log("Connected to DB!");
+db.on("error", (error) => console.log("DB Error", error));
+db.once("open", handleOpen);
+```
+  * 연결할 때는 server 파일에서 db파일만 import하면 된다. `import ./db`
+
+### Mongoose CRUD
+* model
+  * database의 전체적인 모양을 mongoose에게 알려줘야한다.
+  * we need to define shape of the data's model = schema
+* model 사용법
+  * model이 있는 파일을 import
+  * database 파일을 불러올 때 시간이 걸릴 수 있으므로 'callback' or 'promise'를 사용한다.
+  * `model.find()` 를 이용해서 database를 가져올 수 있다.
+
+### async await
+```javascript
+Videos.find({}, (err, videos) => {
+    if (err) {
+        return res.render("server-error");
+    }
+    return res.render("home", { pageTitle: "Home", videos });
+})
+
+export const home = async (req, res) => {
+    try {
+        const videos = await Video.find({});
+        return res.render("home", { pageTitle: "Home", videos });
+    } catch {
+        return res.render("Error Page");
+    }
+}
+```
+* callback 함수를 이용해서 javascript의 행동을 늦추는 방법을 좀 더 쉽게 하기 위한 문법
