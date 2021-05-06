@@ -300,3 +300,35 @@ export const home = async (req, res) => {
 * `객체.save()` 함수를 통해 database에 저장하기
 * 혹은 `객체.create()`를 이용해서 바로 저장하기
 * mongoose는 잘못된 data type을 자동으로 걸러준다.
+
+<br>
+
+## 2021.05.06
+
+### mongoose
+* schema 안에 `default: `를 넣게 되면 데이터가 생설될 때 자동으로 생성
+  * `createdAt: { type: Date, required: true, default: Date.now }` 
+  * `Date.now()`라고 함수를 바로 실행하면, schema file이 저장된 시간으로 저장됨
+  * 따라서 `Date.now` 처럼 함수를 실행하지 않아야 한다.
+* error 처리
+  * 우리가 작성한 데이터 모델과 다른 형식의 값이 들어오면 mongoose에서는 이를 error 처리한다. 이때 페이지는 rendering 되지 않고 무한 loading에 들어가므로 이를 처리해줘야 한다.
+  * `try catch(error)`를 이용해서 처리
+* schema opitons
+  * trim
+  * minLength, maxLength
+    * html과 database에서 보안상의 이유로 많이 사용됨
+    * 양쪽에서 double check가 되기 때문에 더욱 안전하게 사용할 수 있다.
+  * uppercase, lowercase
+* middleware
+  * mongoose에도 middleware가 존재
+  * 무언가를 저장하기 전에 checking process가 필요할 때 사용
+  * 예를 들어서 comment를 database에 저장하기 전에 bad word를 찾아주는 middleware를 사용
+
+### mongoDB ID
+* mongoDB ID는 24바이트 hex로 입력이 된다.
+* `[0-9a-f]{24}` 정규식을 이용해서 id를 가져오기
+* `Model.findById()`를 이용해서 id에 따라 db를 가져오기
+  * `Model.findByIdAndUpdate()`를 이용해서 db를 update할 수 있다.
+* `Model.exists({ _id: id })`
+  * model이 존재하는지 존재하지 않는지 true or false로 return 해주는 함수
+  * postEdit 에서는 model 자체를 가져올 필요가 없기 때문에 사용
