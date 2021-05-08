@@ -348,4 +348,9 @@ export const home = async (req, res) => {
 * `Modle.findByIdAndDelete(id)`
 
 ### Data Query Function
-* `Model.sort()`
+* `Model.sort()` 를 이용해서 data를 정리할 수 있다
+* `req.query`
+  * url에서 '?' 뒤쪽에 해당하는 query string이 저장된 공간
+  * input tag 에서 name을 통해 value를 받아오면 property로 저장됨
+* RegExp를 이용해서 find() 를 좀 더 정교하게 만들 수 있음
+  * mongoDB의 `$`(text operator) 를 이용하기 
