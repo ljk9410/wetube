@@ -354,3 +354,19 @@ export const home = async (req, res) => {
   * input tag 에서 name을 통해 value를 받아오면 property로 저장됨
 * RegExp를 이용해서 find() 를 좀 더 정교하게 만들 수 있음
   * mongoDB의 `$`(text operator) 를 이용하기 
+
+### Create User Authentication
+* video page를 만드는 것과 동일한 방식으로 user db를 만들고 page를 rendering
+* password에 대한 보안이 필요, 이를 해결하기 위한 방법이 존재
+
+### hashing password
+* password를 db에 그대로 저장하는 것은 매우 위험하다
+* 이를 피하는 방법이 해싱(hashing)
+* 해싱은 일방향 함수이며, 절대로 출력값으로 입력값을 알 수 없다
+* 같은 입력값으로는 같은 출력값을 얻는다.
+* 'bcrypt'
+  * hashing을 해주는 api
+```userSchema.pre('save', async function() {
+    this.password = await bcrypt.hash(this.password, 5);
+})
+```
