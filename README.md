@@ -332,3 +332,20 @@ export const home = async (req, res) => {
 * `Model.exists({ _id: id })`
   * model이 존재하는지 존재하지 않는지 true or false로 return 해주는 함수
   * postEdit 에서는 model 자체를 가져올 필요가 없기 때문에 사용
+
+## 2021.05.08
+
+### mongoose middlewares
+* `schema.pre('save', function(){})`
+  * document의 save option에 대한 middleware
+  * model을 만들기 전 middleware가 위치해야 한다.
+  * `this` 객체는 만들어 둔 schema 객체를 가리킴
+* `schema.static('name', function(){})`
+  * schema를 생성할 때 method를 포함시킴
+  * 이후 `model.staticName()`으로 호출해서 사용 가능
+
+### Delete dbs
+* `Modle.findByIdAndDelete(id)`
+
+### Data Query Function
+* `Model.sort()`
