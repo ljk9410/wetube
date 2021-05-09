@@ -370,3 +370,18 @@ export const home = async (req, res) => {
     this.password = await bcrypt.hash(this.password, 5);
 })
 ```
+
+## 2021.05.09
+
+### `$or` operator
+
+### status code
+`res.status(400).render()`
+* 브라우저는 개발자가 에러를 출력하고 있다는 사실을 모른다
+* 그렇기 때문에 `status(숫자)`를 이용해서 브라우저에게 이러한 사실을 알려야함
+
+### login form 만들기
+* 해싱된 패스워드를 어떻게 check 하는가?
+  * 입력값에 대한 출력값은 항상 같다
+  * 유저가 패스워드를 입력하면 이를 가져다 해싱해서 그 값이 우리의 db에 있는 값과 일치하는지 보면 됨
+  * `bcrypt.compare()`
