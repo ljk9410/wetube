@@ -385,3 +385,28 @@ export const home = async (req, res) => {
   * 입력값에 대한 출력값은 항상 같다
   * 유저가 패스워드를 입력하면 이를 가져다 해싱해서 그 값이 우리의 db에 있는 값과 일치하는지 보면 됨
   * `bcrypt.compare()`
+
+
+## 2021.05.11
+
+### session & cookies
+* session
+  * 백엔드와 브라우저 간에 어떤 활동을 했는지 기억
+  * 브라우저와 벡엔드 사이의 memory, history
+* cookie
+  * 유저가 요청을 할 때 백엔드에서 유저에게 무언가를 건넨다
+  * somthing like piece of text
+
+* express-session
+  * 자동으로 cookie를 유저에게 보내주는 middleware
+  * `req.headers`를 이용해서 cookie를 받아올 수 있다.
+  * 어떤 유저가 우리에게 request 했는지를 백엔드가 알고 있다.
+
+### Logged in User
+* login controller에서 login을 했다면 
+  * session object에 `loggedIn = true` 정보와
+  * `user = user` 정보를 추가해주는 코드 삽입
+
+### res.locals
+* pug templates에서 `res.locals`에 접근할 수 있다.
+* 자동으로 연결해주고, 별다른 수식어 없이 `#{변수명}`만 넣으면 된다.
