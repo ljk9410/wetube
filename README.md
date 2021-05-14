@@ -396,7 +396,6 @@ export const home = async (req, res) => {
 * cookie
   * 유저가 요청을 할 때 백엔드에서 유저에게 무언가를 건넨다
   * somthing like piece of text
-
 * express-session
   * 자동으로 cookie를 유저에게 보내주는 middleware
   * `req.headers`를 이용해서 cookie를 받아올 수 있다.
@@ -410,3 +409,31 @@ export const home = async (req, res) => {
 ### res.locals
 * pug templates에서 `res.locals`에 접근할 수 있다.
 * 자동으로 연결해주고, 별다른 수식어 없이 `#{변수명}`만 넣으면 된다.
+
+## 2021.05.14
+
+### session & MongoDB
+* 현재 상태는 session에 loggedIn User의 정보를 저장
+  * 하지만 server를 재시작하게 되면 session의 정보가 사라진다
+* connect-mongo
+  * server-side에 있는 session 정보를 mongoDB에 저장하기 위한 모듈
+  * app.use(session) 부분에
+  * `store: MongoStore.create({ mongoUrl: "mongodb://127.0.0.1:27017/wetube" })` 를 추가
+  * 이를 통해서 session ID를 memory에 저장하는 것이 아닌 DB에 저장하도록 만듬
+
+### Uninitialized Sessions
+* 만약 모든 알 수 없는 사용자들에게 쿠키를 주고 이를 DB에 저장한다면 엄청난 부하가 생길 수 있다
+* 그렇기 때문에 session의 save 옵션을 false로 바꿔야한다.
+* 이를 통해서 `postLogin` 컨트롤러에서 session 부분을 수정할 때 intialize가 일어나고 이때 DB에 session ID가 저장되게 하는 것
+
+### Properties of cookies
+* maxAge
+  * session의 만료 날짜를 1밀리초 단위로 설정할 수 있다.
+
+### `.env` && `dotenv`
+* github에는 우리의 비밀스러운 코드가 올라가면 안된다.
+* 이를 위해서 `.env` 파일을 만든 후 `.gitignore`에 이를 추가
+* `dotenv`
+  * `process.env` 에 variable을 추가해주는 모듈
+  * 가능한 빨리 require 해야하는데, 최대한 빨리 env를 불러오기 위함
+  * `require("dotenv").config()`를 통해 실행
