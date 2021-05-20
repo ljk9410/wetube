@@ -466,3 +466,16 @@ export const home = async (req, res) => {
 ### `res.session.destroy()`
 * 현재 남아 있는 session을 없애는 함수
 * logout page에서 사용됨
+
+## 2021.05.20
+
+### Edit Profile
+* route, controller, template에 대한 복습 진행
+* middleware를 이용해서 user 정보를 쉽게 pug로 넘겨주는 방법
+* login 하지 않은 사람이 `/user/edit` url로 접근하는 것을 막기 위한 방법
+  * middleware를 이용해서 중간 과정에서 걸러내기
+  * `all(protectMiddleware)`을 이용하면 어떠한 http method의 경우에도 middleware을 사용
+
+### Update Profile
+* postEdit controller 에서 mongoose와 `req.body`, `req.session`을 이용해서 DB수정
+* session을 업데이트 해주는 과정이 필요하다.
