@@ -437,3 +437,32 @@ export const home = async (req, res) => {
   * `process.env` 에 variable을 추가해주는 모듈
   * 가능한 빨리 require 해야하는데, 최대한 빨리 env를 불러오기 위함
   * `require("dotenv").config()`를 통해 실행
+
+## 2021.05.17
+
+### github social login
+* OAUTH 를 이용한 유저로그인 방법
+* flow
+  1. 사용자를 깃헙 authentication page로 redirection
+  2. 사용자가 깃헙에 의해 사이트로 redirection
+      * 이 과정에서 `fetch`를 이용함
+      * access-token을 가져온다
+  3. 앱이 사용자의 access-token을 이용해서 API에 접근
+
+### OAUTH
+* github -> settings -> OAUTH -> new OAUTH
+* URL에서 여러가지 옵션을 조정할 수 있다
+  * `allow_signup=false`
+    * 오직 github 사용유저만이 login 할 수 있게끔 만들어주는 옵션
+  * `scope`
+    * login 할 때 public data 이외에 우리가 원하는 정보를 얻을 수 있게 해주는 옵션
+
+### `URLSearchParams()`
+* 객체를 url의 query string으로 변환시켜주는 함수
+
+### node-fetch
+* nodejs에는 fetch 기능이 없기 때문에 이를 위한 패키지가 필요함
+
+### `res.session.destroy()`
+* 현재 남아 있는 session을 없애는 함수
+* logout page에서 사용됨
