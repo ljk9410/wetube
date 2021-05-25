@@ -486,3 +486,15 @@ export const home = async (req, res) => {
 * change password에 대한 controller, template을 만듬
 * bcrypt를 이용해서 hash된 비밀번호를 비교하는 과정을 거침
 * mongoose의 save 기능을 이용해서 DB를 업데이트
+
+## 2021.05.25
+
+### Upload Files
+* multer
+  * file upload를 도와주는 middleware
+  * form을 통해서 img를 받아와서 `req.file`에 파일 정보를 저장
+  * `export const uploadFiles = multer({ dest: "uploads/" });` 와 같은 middleware를 만들어서 사용
+* DB에는 파일을 절대 저장하면 안된다!! 대신에 파일의 url을 저장하는 것이 맞다
+
+### Static Files Serving
+* 폴더 전체를 브라우저에게 노출시키는 것을 의미

@@ -142,14 +142,26 @@ export const getEdit = (req, res) => {
 export const postEdit = async (req, res) => {
     const { 
         session: {
-            user: { _id, email:sessionEmail, username: sessionUserName }
+            user: { 
+                _id, 
+                email:sessionEmail, 
+                username: sessionUserName,
+                avatarUrl
+            }
         },
         body : {
             name, email, username, location
-        }
+        },
+        file
     } = req;
     const updatedUser = await User.findByIdAndUpdate(_id, 
-        { name, email, username, location },
+        { 
+            avatarUrl: file ? file.path : avatarUrl, 
+            name, 
+            email, 
+            username, 
+            location 
+        },
         { new: true } 
     );
     if (sessionEmail === email || sessionUserName === name)
