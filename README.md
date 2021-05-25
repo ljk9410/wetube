@@ -479,3 +479,10 @@ export const home = async (req, res) => {
 ### Update Profile
 * postEdit controller 에서 mongoose와 `req.body`, `req.session`을 이용해서 DB수정
 * session을 업데이트 해주는 과정이 필요하다.
+
+## 2021.05.21
+
+### Change Password
+* change password에 대한 controller, template을 만듬
+* bcrypt를 이용해서 hash된 비밀번호를 비교하는 과정을 거침
+* mongoose의 save 기능을 이용해서 DB를 업데이트

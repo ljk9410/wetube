@@ -107,7 +107,6 @@ export const finishGithubLogin = async (req, res) => {
                 Authorization: `token ${access_token}`,
             },
         })).json();
-        console.log(emailData);
         const emailObj = emailData.find(
             (email) => email.primary === true && email.verified === true
         );
@@ -163,4 +162,35 @@ export const postEdit = async (req, res) => {
     req.session.user = updatedUser;
     return res.redirect("/users/edit");
 }
+export const getChangePassword = (req, res) => {
+    if (req.session.user.socialOnly === true) {
+        return res.redirect("/");
+    }
+    return res.render("users/change-password", { pageTitle: "change Password" });
+};
+export const postChangePassword = async (req, res) => {
+    const { 
+        session: {
+            user: { _id, password }
+        },
+        body : {
+            oldPassword, newPassword, newPasswordConfirmation,
+        }
+    } = req;
+    const user = await User.findById(_id);
+    const ok = await bcrypt.compare(oldPassword, user.password);
+    if (!ok) {
+        return res.status(400).render("users/change-password", { 
+            pageTitle: "change Password", errorMessage: "The current password is incorrect"
+        });
+    }
+    if (newPassword !== newPasswordConfirmation) {
+        return res.status(400).render("users/change-password", { 
+            pageTitle: "change Password", errorMessage: "The password does not match with password confirmation"
+        });
+    }
+    user.password = newPassword;
+    await user.save();
+    return res.redirect("/users/logout");
+};
 export const see = (req, res) => res.send("See Users");
