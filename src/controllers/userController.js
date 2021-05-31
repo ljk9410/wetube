@@ -205,4 +205,13 @@ export const postChangePassword = async (req, res) => {
     await user.save();
     return res.redirect("/users/logout");
 };
-export const see = (req, res) => res.send("See Users");
+export const see = async (req, res) => {
+    const { id } = req.params;
+    const user = await User.findById(id).populate("videos");
+    console.log(user);
+    if(!user)
+    {
+        return res.status(404).render("404", { pageTitle: "NOT FOUND!" });
+    }
+    return res.render("users/profile", { pageTitle: user.name, user });
+}

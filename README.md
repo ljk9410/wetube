@@ -507,3 +507,12 @@ export const home = async (req, res) => {
 * `enctype="multipart/form-data"`
   * multer를 이용해서 데이터를 받아들여올 때 form tag에 반드시 입력해야 되는 옵션
 * form을 이용해서 file을 받아오고, "uploads/videos"에 파일을 저장, 이후 `req.file.path`를 db에 저장하고 이를 이용해서 template에서 video를 rendering
+
+### Connect Video & User
+* 전체적인 방법
+  * `req.session`에 저장되어 있는 user_id 를 이용
+  * video를 생성할 때 `user._id`를 저장하면 db끼리 연결이 가능
+  * 이를 이용해서 다양한 기능을 만들어냄
+* mongoose의 `populate()`
+  * mongoose의 `ref` 옵션을 이용
+  * `populate("relation")`을 작성하면 mongoose가 연관된 db자료를 연결시켜줌
