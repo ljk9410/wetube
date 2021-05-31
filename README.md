@@ -498,3 +498,12 @@ export const home = async (req, res) => {
 
 ### Static Files Serving
 * 폴더 전체를 브라우저에게 노출시키는 것을 의미
+
+## 2021.05.31
+
+### Upload Video
+* fileSize
+  * upload되는 filedml size를 조절할 수 있는 multer의 옵션
+* `enctype="multipart/form-data"`
+  * multer를 이용해서 데이터를 받아들여올 때 form tag에 반드시 입력해야 되는 옵션
+* form을 이용해서 file을 받아오고, "uploads/videos"에 파일을 저장, 이후 `req.file.path`를 db에 저장하고 이를 이용해서 template에서 video를 rendering
