@@ -516,3 +516,64 @@ export const home = async (req, res) => {
 * mongoose의 `populate()`
   * mongoose의 `ref` 옵션을 이용
   * `populate("relation")`을 작성하면 mongoose가 연관된 db자료를 연결시켜줌
+
+### Bug Fix
+1. mongoose 에서 `pre("save")`를 사용했기 때문에 video를 업로드할 때마다 password가 hash되는 문제점이 발생
+  * 이를 위해서 아래와 같이 `isModified()` 함수를 사용
+  * `isModified()`는 객체의 어느 부분이 수정되었을 때 `true`를 반환하는 함수
+    ```js
+    userSchema.pre('save', async function() {
+        if (this.isModified("password")) {
+            this.password = await bcrypt.hash(this.password, 5);
+        }
+    })
+    ```
+2. owner가 아닌 사람이 editVideo를 할 수 없게 하기
+  * db안의 내용들을 가지고 condition을 만들기
+  ```js
+      if(String(video.owner) !== String(_id)) {
+        return res.status(403).redirect("/");
+    }
+  ```
+
+## 2021.06.02
+
+### Webpack
+* 우리가 주는 모든 파일을 받아서 다른 파일로 처리, 변경해주는 모듈
+* 대부분 webpack을 직접 사용하지 않고, webpack을 포함한 툴을 사용한다
+* 따라서 어지간하면 개발자들이 직접 webpack 파일을 설정할 필요가 없다
+
+### Webpack Configuration
+* webpack, webpack-cli 설치
+* `webpack.config.js` 파일 생성
+  * `entry`와 `output` 이라는 필수요건 작성
+* `path.resolve()`, `__dirname`
+  * `path.resolve(arg1, arg2, arg3)`: arg들을 모아서 path를 생성
+  * `__dirname`: 파일까지의 모든 경로를 나타냄
+* rules
+  * 특정 종류의 파일들에게 변형을 적용시키는 방법을 정리해놓는 객체
+* mode
+  * 'production': 완성된 이후 압축된 코드
+  * 'development': 아직 개발중인 단계에서 보여지는 코드
+=> entry, output, rules 는 webpack의 가장 기본적인 구조!!!
+
+### Webpack을 이용한 front-end 연결과정
+1. browser에서 동작할 `js`파일 생성
+2. webpack 설정을 통해 압축된 `js`파일 생성
+3. server에서 압축된 `js`파일을 사용
+4. pug에 `js`파일 적용 후 rendering
+
+### babel-loader & SCSS-loader
+webpack의 rule 안에서 사용할 모듈들
+* babel-loader
+  * back-end의 babel과 동일한 역할을 함
+  * front-end에서 사용할 코드를 옛날 코드로 compile
+* sass-loader css-loader style-loader
+  * sass-loader: scss의 코드를 css코드로 변환시켜주는 loader
+  * css-loader: @import와 url을 풀어서 해석하주는 loader
+  * style-loader: css를 DOM에 주입하는 loader
+
+### Webpack plugin
+* Mini-Css-Extract-Plugin
+  * 현재까지 우리의 webpack은 css를 javascript에 삽입했다
+  * css파일을 따로 분리해서 관리하기 위해 필요한 plugin
