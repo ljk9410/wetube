@@ -577,3 +577,7 @@ webpack의 rule 안에서 사용할 모듈들
 * Mini-Css-Extract-Plugin
   * 현재까지 우리의 webpack은 css를 javascript에 삽입했다
   * css파일을 따로 분리해서 관리하기 위해 필요한 plugin
+
+## 2021.06.04
+
+### CSS Part
