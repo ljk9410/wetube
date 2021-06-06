@@ -164,13 +164,13 @@ export const postEdit = async (req, res) => {
         },
         { new: true } 
     );
-    if (sessionEmail === email || sessionUserName === name)
-    {
-        return res.status(400).render("edit-profile", { 
-            pageTitle: "Edit Profile", 
-            errorMessage: "This username or email is already taken."
-        });
-    }
+    // if (sessionEmail === email || sessionUserName === name)
+    // {
+    //     return res.status(400).render("edit-profile", {
+    //         pageTitle: "Edit Profile", 
+    //         errorMessage: "This username or email is already taken."
+    //     });
+    // }
     req.session.user = updatedUser;
     return res.redirect("/users/edit");
 }
