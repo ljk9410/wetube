@@ -581,3 +581,7 @@ webpack의 rule 안에서 사용할 모듈들
 ## 2021.06.04
 
 ### CSS Part
+
+## 2021.06.07
+
+### Video Player
