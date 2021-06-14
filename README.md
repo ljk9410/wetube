@@ -579,9 +579,29 @@ webpack의 rule 안에서 사용할 모듈들
   * css파일을 따로 분리해서 관리하기 위해 필요한 plugin
 
 ## 2021.06.04
-
 ### CSS Part
 
-## 2021.06.07
 
+## 2021.06.07
 ### Video Player
+
+
+## 2021.06.09
+### Javascript Event에 대한 모든 것
+#### mousemove
+#### mouseleave
+#### setTimeout(function(), 시간)
+  * 어떠한 function을 내가 설정한 시간 뒤에 실행하게끔 하는 함수
+  * 이 함수는 특정한 id를 return 한다
+#### clearTimeout(id)
+  * setTimeout()에서 return한 특정한 id를 인자로 받음
+  * 이 id를 부여받은 함수의 실행을 멈춤
+
+## 2021.06.14
+
+### api views
+* 템플릿을 rendering 하지 않는 view
+
+### data attribute
+* 프론트에서 필요한 데이터를 HTML에 저장하기 위해 필요한 속성
+* `dataset` property 이용해서 접근할 수 있음
