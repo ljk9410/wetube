@@ -605,3 +605,21 @@ webpack의 rule 안에서 사용할 모듈들
 ### data attribute
 * 프론트에서 필요한 데이터를 HTML에 저장하기 위해 필요한 속성
 * `dataset` property 이용해서 접근할 수 있음
+
+## 2021.06.16
+
+### FFmpeg
+* 비디오의 형식 변환, 화질, 썸네일제작 등을 할 수 있는 소프트웨어
+
+### WebAssembly
+* 프론트엔드에서 매우 빠른 코드를 실행할 수 있게 해준다
+* JS가 아니어도 다른 언어를 사용할 수 있다
+
+### FFmpeg.wasm
+
+## 2021.06.21
+### express-flash
+* 사용자에게 flash message를 남길 수 있게 해주는 middleware
+* message는 session에 기반하기 때문에 한 명의 사용자에게만 보여줄 수 있다
+* `app.use(flash());` -> `req.flash`에 접근할 수 있음
+* `messages` 라는 locals가 자동적으로 생겨서 템플릿에서 이를 이용할 수 있다
