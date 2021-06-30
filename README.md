@@ -623,3 +623,15 @@ webpack의 rule 안에서 사용할 모듈들
 * message는 session에 기반하기 때문에 한 명의 사용자에게만 보여줄 수 있다
 * `app.use(flash());` -> `req.flash`에 접근할 수 있음
 * `messages` 라는 locals가 자동적으로 생겨서 템플릿에서 이를 이용할 수 있다
+
+## 2021.06.28
+### 배포하기
+1. Babel CLI를 이용해서 Javascript 코드 변경하기
+    - Babel-node를 그대로 사용하는 것은 느리기 때문에 Performance가 좋지 못함
+    - 아마존server에 파일을 올리기 전에 Javascript 코드를 변경할 필요가 있음
+    - Babel CLI를 이용 최신 Javscript를 호환성이 높은 예전 Javascript코드로 변경
+    - 이후 Babel을 이용해서 server를 시작하는 것이 아닌 node를 이용해서 서버를 시작하게끔 변경
+2. Frontend Build
+   -  webpack의 설정을 development->production으로 변경
+   -  `webpack --mode=production`와 같은 옵션을 넣어주면 됨
+3. 
