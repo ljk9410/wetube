@@ -128,18 +128,18 @@ export const createComment = async (req, res) => {
     return res.status(201).json({ newCommentId:comment._id});
 }
 
-export const deleteComment = async (req, res) => {
-    const { 
-        session: {
-            user: { _id }
-        },
-        body: { commentId },
-     } = req;
-    const comment = await Comment.findById(commentId).populate("owner");
-    const ownerId = comment.owner._id;
-    if (String(_id) === String(ownerId)) {
-        await Comment.findByIdAndDelete(commentId);
-    } else {
-        return res.sendStatus(405);
-    }
-}
+// export const deleteComment = async (req, res) => {
+//     const { 
+//         session: {
+//             user: { _id }
+//         },
+//         body: { commentId },
+//      } = req;
+//     const comment = await Comment.findById(commentId).populate("owner");
+//     const ownerId = comment.owner._id;
+//     if (String(_id) === String(ownerId)) {
+//         await Comment.findByIdAndDelete(commentId);
+//     } else {
+//         return res.sendStatus(405);
+//     }
+// }
