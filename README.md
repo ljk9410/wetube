@@ -634,4 +634,30 @@ webpack의 rule 안에서 사용할 모듈들
 2. Frontend Build
    -  webpack의 설정을 development->production으로 변경
    -  `webpack --mode=production`와 같은 옵션을 넣어주면 됨
-3. 
+3. Heroku 내부에 우리의 서버를 옮기기
+    - ID생성, app만들기
+    - Heroku Git으로 올리기 or Github으로 올리기
+    - Heroku는 git history에 있는 파일들만 읽을 수 있다
+    - 하지만 `.env`파일은 gitignore에 존재하기 때문에 MongoUrl을 불러올 수 없는 오류가 발생
+
+## 2021.07.12
+### 배포하기 이어서
+4. MongoDB Atlas
+  - Cluster
+    - Database 그룹과 같은 의미
+    - 생성을 할 때는 무료버전으로 진행
+    - user password는 반드시 기억해야함
+    - 생성 이후 나오는 DB_URL이 진짜 DB와 연결할 URL
+5. Heroku setting
+  - DB_URL을 연결하고 보관하기 위해 Heroku application 이용
+    - settings -> reveal config vars
+    - 이곳에서 DB_URL 변수를 추가
+6. process.env 변수 추가
+  - COOKIE_SECRET 역시 Heroku에서 변수로 지정해주어야함
+7. Web process failed to bind to $PORT error
+   - `PORT:4000` 은 Heroku가 우리에게 준 `PORT`가 아님
+   - Heroku는 `PORT`를 랜덤으로 지정해서 주기 떄문에 이를 연결해야함
+8. Github Login
+   - 이 부분 역시 `.env`에 `GH_CLIENT`, `GH_SECRET`이 없기 때문에 추가
+   - Redirect Url도 heroku로 바꾸기
+9.  
