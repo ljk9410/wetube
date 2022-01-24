@@ -660,6 +660,3 @@ webpack의 rule 안에서 사용할 모듈들
 8. Github Login
    - 이 부분 역시 `.env`에 `GH_CLIENT`, `GH_SECRET`이 없기 때문에 추가
    - Redirect Url도 heroku로 바꾸기
-  
-### Gitbut으로 배포하기
-1. 
